@@ -31,6 +31,7 @@
 header {
   background: var(--bg-image-mobile);
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: top;
   height: 40vh;
   width: 100%;
