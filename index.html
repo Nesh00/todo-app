@@ -16,9 +16,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
     <title>Frontend Mentor | Todo app</title>
   </head>
-  <body class="theme-dark">
+  <body>
     <header>
       <div id="header-container" class="container">
         <div
@@ -34,9 +35,13 @@
           "
         >
           <h2 class="text-uppercase">Todo</h2>
-          <span>
-            <img src="images/icon-sun.svg" alt="Theme-Switcher Icon" />
-          </span>
+          <a id="theme-btn" class="btn">
+            <img
+              id="theme-img"
+              src="images/icon-sun.svg"
+              alt="Theme-Switcher Icon"
+            />
+          </a>
         </div>
       </div>
     </header>
