@@ -2,7 +2,7 @@
 
 const themeBtn = document.querySelector('#theme-btn');
 const themeImg = document.querySelector('#theme-img');
-const body = document.querySelector('body');
+const checkBtn = document.querySelector('.radio-btn');
 
 const changeThemeImg = () => {
   if (document.documentElement.className === 'theme-light')
@@ -30,3 +30,7 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 themeBtn.addEventListener('click', toggleTheme);
+
+checkBtn.addEventListener('click', function (e) {
+  this.classList.toggle('radio-btn--checked');
+});

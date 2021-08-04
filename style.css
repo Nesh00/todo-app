@@ -1,7 +1,8 @@
 .theme-light {
   --body-bg-color: rgb(250, 250, 250);
+  --list-bg-color: rgb(248, 248, 248);
   --font-color-primary: rgb(72, 75, 106);
-  --font-color-secondary: rgb(147, 148, 165);
+  --font-color-hover: rgb(147, 148, 165);
   --font-color-tertiary: rgb(210, 211, 219);
   --font-color-quaternary: rgb(228, 229, 241);
   --bg-image-mobile: url(images/bg-mobile-light.jpg);
@@ -10,7 +11,7 @@
 
 .theme-dark {
   --body-bg-color: rgb(22, 23, 34);
-  --app-bg-color: rgb(37, 39, 60);
+  --list-bg-color: rgb(37, 39, 60);
   --font-color-primary: rgb(202, 205, 232);
   --font-color-hover: rgb(228, 229, 241);
   --font-color-secondary: rgb(119, 122, 146);
@@ -28,6 +29,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background: var(--body-bg-color);
+}
+
+/* HEADER */
 header {
   background: var(--bg-image-mobile);
   background-size: cover;
@@ -41,6 +47,87 @@ header {
   letter-spacing: 1rem;
 }
 
+#theme-img {
+  margin-right: -0.9rem;
+}
+
+main {
+  margin-top: -6rem;
+}
+
+/* INPUT-FIELD */
+.input-bg-color,
+.input-bg-color:focus {
+  text-indent: 2rem;
+  color: var(--font-color-primary);
+  background: var(--list-bg-color);
+  border: none;
+  opacity: 1;
+}
+
+/* LIST */
+.list-item-bg {
+  color: var(--font-color-primary) !important;
+  background: var(--list-bg-color) !important;
+  height: 3rem;
+  border-bottom: 1px solid var(--font-color-quaternary);
+  cursor: pointer;
+}
+
+.radio-btn {
+  border: 1px solid var(--font-color-tertiary);
+  border-radius: 50%;
+  height: 1.3rem;
+  width: 1.3rem;
+  margin-right: 0.8rem;
+}
+
+.radio-btn:hover {
+  border: 1px solid var(--font-color-hover);
+}
+
+.radio-btn--checked {
+  background: url(images/icon-check.svg),
+    linear-gradient(to bottom right, rgb(87, 221, 255), rgb(192, 88, 243));
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.radio-btn--checked ~ .list-text {
+  text-decoration: line-through;
+  color: var(--font-color-tertiary);
+}
+
+.radio-btn--checked ~ .close-btn {
+  display: block !important;
+}
+
+.list-text {
+  font-size: 1.2rem;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+}
+
+small {
+  color: var(--font-color-secondary);
+}
+
+small:hover:not(:first-child) {
+  color: var(--font-color-hover);
+  cursor: pointer;
+}
+
+.blue {
+  color: rgb(58, 123, 253);
+  cursor: pointer;
+}
+
+/* HEADER-IMAGE CHANGE QUERY */
 @media (min-width: 37.5em), (min-width: 125em) {
   header {
     background: var(--bg-image-desktop);
