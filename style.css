@@ -71,7 +71,11 @@ main {
   background: var(--list-bg-color) !important;
   height: 3rem;
   border-bottom: 1px solid var(--font-color-quaternary);
-  cursor: pointer;
+}
+
+.list-item-bg:last-of-type {
+  border-bottom: none;
+  border-radius: 0 0 4px 4px;
 }
 
 .radio-btn {
@@ -80,6 +84,7 @@ main {
   height: 1.3rem;
   width: 1.3rem;
   margin-right: 0.8rem;
+  cursor: pointer;
 }
 
 .radio-btn:hover {
@@ -113,6 +118,12 @@ main {
   border: none;
 }
 
+.list-footer-bg {
+  background: var(--list-bg-color);
+  padding: 0;
+  border-radius: 0px;
+}
+
 small {
   color: var(--font-color-secondary);
 }
@@ -127,9 +138,29 @@ small:hover:not(:first-child) {
   cursor: pointer;
 }
 
+footer {
+  margin-top: 1rem;
+}
+
+.footer-text-color {
+  color: var(--font-color-tertiary);
+}
+
 /* HEADER-IMAGE CHANGE QUERY */
 @media (min-width: 37.5em), (min-width: 125em) {
   header {
     background: var(--bg-image-desktop);
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (max-width: 62em) {
+  .list-footer-bg {
+    padding: 0.7rem 0;
+    border-radius: 4px;
+  }
+
+  footer {
+    margin-top: 7rem;
   }
 }
