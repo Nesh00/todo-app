@@ -25,6 +25,10 @@ const toggleTheme = () => {
   changeThemeImg();
 };
 
+// (function () {
+//   document.documentElement.classList.add('theme-dark');
+// })();
+
 // Events
 window.addEventListener('DOMContentLoaded', function () {
   document.documentElement.className = localStorage.getItem('theme');
@@ -33,15 +37,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
 themeBtn.addEventListener('click', toggleTheme);
 
-checkBtn.addEventListener('click', function (e) {
-  this.classList.toggle('radio-btn--checked');
-});
-
 const renderListItem = function (input) {
   const html = `
     <li class="list-group-item list-item-bg d-flex align-items-center">
         <div class="radio-btn align-self-center"></div>
-        <div class="list-text">${input.trim()}</div>
+        <div class="list-text text-capitalize">${input.trim()}</div>
 
         <button class="d-lg-none close-btn align-self-start ms-auto">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
@@ -56,8 +56,15 @@ const renderListItem = function (input) {
 inputForm.addEventListener('keydown', function (e) {
   const input = e.target;
 
-  if (e.key === 'Enter') {
+  if (e.key === 'Enter' && input.value.length >= 1) {
     renderListItem(input.value);
     input.value = '';
+  }
+});
+
+listGroup.addEventListener('click', function (e) {
+  const radioBtn = e.target.closest('.radio-btn');
+  if (radioBtn) {
+    radioBtn.classList.toggle('radio-btn--checked');
   }
 });
