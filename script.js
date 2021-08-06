@@ -24,15 +24,9 @@ const toggleTheme = () => {
   changeThemeImg();
 };
 
-// (function () {
-//   document.documentElement.classList.add('theme-dark');
-// })();
-
-// Events
-window.addEventListener('DOMContentLoaded', function () {
-  document.documentElement.className = localStorage.getItem('theme');
-  changeThemeImg();
-});
+(function () {
+  document.documentElement.classList.add('theme-dark');
+})();
 
 themeBtn.addEventListener('click', toggleTheme);
 
