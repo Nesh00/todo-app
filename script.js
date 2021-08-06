@@ -2,7 +2,6 @@
 
 const themeBtn = document.querySelector('#theme-btn');
 const themeImg = document.querySelector('#theme-img');
-const checkBtn = document.querySelector('.radio-btn');
 const listGroup = document.querySelector('.list-group');
 const inputForm = document.querySelector('.form-control');
 
@@ -66,5 +65,13 @@ listGroup.addEventListener('click', function (e) {
   const radioBtn = e.target.closest('.radio-btn');
   if (radioBtn) {
     radioBtn.classList.toggle('radio-btn--checked');
+  }
+});
+
+listGroup.addEventListener('click', function (e) {
+  const closeBtn = e.target.closest('button');
+  const listItem = e.target.closest('li');
+  if (closeBtn) {
+    listItem.remove();
   }
 });
