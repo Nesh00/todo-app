@@ -75,7 +75,6 @@ main {
 }
 
 .list-item-bg:last-of-type {
-  border-bottom: none;
   border-radius: 0 0 4px 4px;
 }
 
@@ -122,6 +121,7 @@ main {
 .list-footer-bg {
   background: var(--list-bg-color);
   padding: 0;
+  border: none;
   border-radius: 0px;
 }
 
@@ -155,9 +155,10 @@ footer {
   }
 }
 
-@media screen and (max-width: 62em) {
+@media all and (max-width: 62em) {
   .list-footer-bg {
     padding: 0.7rem 0;
+    border: 1px solid var(--font-color-quaternary);
     border-radius: 4px;
   }
 
