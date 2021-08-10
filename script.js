@@ -78,6 +78,10 @@ listGroup.addEventListener('click', function (e) {
   }
 });
 
+Sortable.create(listGroup, {
+  animation: 100,
+});
+
 (function () {
   document.documentElement.classList.add('theme-dark');
   updateSum();
