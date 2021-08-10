@@ -4,6 +4,7 @@ const themeBtn = document.querySelector('#theme-btn');
 const themeImg = document.querySelector('#theme-img');
 const listGroup = document.querySelector('.list-group');
 const inputForm = document.querySelector('.form-control');
+const sumOfListItems = document.querySelector('#sum');
 
 const changeThemeImg = () => {
   if (document.documentElement.className === 'theme-light')
@@ -24,15 +25,11 @@ const toggleTheme = () => {
   changeThemeImg();
 };
 
-(function () {
-  document.documentElement.classList.add('theme-dark');
-})();
-
 themeBtn.addEventListener('click', toggleTheme);
 
 const renderListItem = function (input) {
   const html = `
-    <li class="list-group-item list-item-bg d-flex align-items-center">
+    <li class="list-group-item list-item-bg d-flex align-items-center list-item">
         <div class="radio-btn align-self-center"></div>
         <div class="list-text text-capitalize">${input.trim()}</div>
 
@@ -46,12 +43,22 @@ const renderListItem = function (input) {
   listGroup.insertAdjacentHTML('afterbegin', html);
 };
 
+const updateSum = function () {
+  const allItems = document.querySelectorAll('.list-item');
+
+  sumOfListItems.textContent =
+    allItems.length === 1
+      ? `${allItems.length} item left`
+      : `${allItems.length} items left`;
+};
+
 inputForm.addEventListener('keydown', function (e) {
   const input = e.target;
 
   if (e.key === 'Enter' && input.value.length >= 1) {
     renderListItem(input.value);
     input.value = '';
+    updateSum();
   }
 });
 
@@ -67,5 +74,11 @@ listGroup.addEventListener('click', function (e) {
   const listItem = e.target.closest('li');
   if (closeBtn) {
     listItem.remove();
+    updateSum();
   }
 });
+
+(function () {
+  document.documentElement.classList.add('theme-dark');
+  updateSum();
+})();
