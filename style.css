@@ -144,7 +144,7 @@ footer {
 }
 
 .footer-text-color {
-  color: var(--font-color-tertiary);
+  color: var(--font-color-secondary);
 }
 
 /* HEADER-IMAGE CHANGE QUERY */
