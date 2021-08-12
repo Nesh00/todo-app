@@ -63,6 +63,7 @@ inputForm.addEventListener('keydown', function (e) {
     renderListItem(input.value);
     input.value = '';
     updateSum();
+    renderAllListItems();
   }
 });
 
@@ -89,10 +90,15 @@ Sortable.create(listGroup, {
 });
 
 // LIST-FOOTER BUTTONS DISPLAY-EVENTS
-allBtn.addEventListener('click', function () {
+const renderAllListItems = function () {
   const listItems = document.querySelectorAll('.list-item');
   listItems.forEach((listItem) => listItem.classList.remove('hidden'));
-});
+
+  [activeBtn, completedBtn].forEach((btn) => btn.classList.remove('active'));
+  allBtn.classList.add('active');
+};
+
+allBtn.addEventListener('click', renderAllListItems);
 
 activeBtn.addEventListener('click', function () {
   const listBtns = document.querySelectorAll('.radio-btn');
@@ -105,6 +111,9 @@ activeBtn.addEventListener('click', function () {
       listItem.classList.add('hidden');
     }
   });
+
+  [allBtn, completedBtn].forEach((btn) => btn.classList.remove('active'));
+  this.classList.add('active');
 });
 
 completedBtn.addEventListener('click', function () {
@@ -118,6 +127,9 @@ completedBtn.addEventListener('click', function () {
       listItem.classList.add('hidden');
     }
   });
+
+  [allBtn, activeBtn].forEach((btn) => btn.classList.remove('active'));
+  this.classList.add('active');
 });
 
 clearCompletedBtn.addEventListener('click', function () {
