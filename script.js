@@ -82,8 +82,10 @@ listGroup.addEventListener('click', function (e) {
   }
 });
 
+// SORTING LIST-ITEMS WITH DRAG AND DROP
 Sortable.create(listGroup, {
-  animation: 100,
+  animation: 150,
+  filter: '#list-footer',
 });
 
 // LIST-FOOTER BUTTONS DISPLAY-EVENTS
