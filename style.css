@@ -68,8 +68,8 @@ main {
 
 /* LIST */
 .list-item-bg {
-  color: var(--font-color-primary) !important;
-  background: var(--list-bg-color) !important;
+  color: var(--font-color-primary);
+  background: var(--list-bg-color);
   height: 3rem;
   border-bottom: 1px solid var(--font-color-quaternary);
 }
@@ -137,6 +137,10 @@ small:hover:not(:first-child) {
 .blue {
   color: rgb(58, 123, 253);
   cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
 }
 
 footer {

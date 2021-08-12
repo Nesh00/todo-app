@@ -5,6 +5,10 @@ const themeImg = document.querySelector('#theme-img');
 const listGroup = document.querySelector('.list-group');
 const inputForm = document.querySelector('.form-control');
 const sumOfListItems = document.querySelector('#sum');
+const allBtn = document.querySelector('#all');
+const activeBtn = document.querySelector('#active');
+const completedBtn = document.querySelector('#completed');
+const clearCompletedBtn = document.querySelector('#clear-completed--btn');
 
 const changeThemeImg = () => {
   if (document.documentElement.className === 'theme-light')
@@ -80,6 +84,51 @@ listGroup.addEventListener('click', function (e) {
 
 Sortable.create(listGroup, {
   animation: 100,
+});
+
+// LIST-FOOTER BUTTONS DISPLAY-EVENTS
+allBtn.addEventListener('click', function () {
+  const listItems = document.querySelectorAll('.list-item');
+  listItems.forEach((listItem) => listItem.classList.remove('hidden'));
+});
+
+activeBtn.addEventListener('click', function () {
+  const listBtns = document.querySelectorAll('.radio-btn');
+
+  listBtns.forEach((listBtn) => {
+    const listItem = listBtn.parentElement;
+    listItem.classList.remove('hidden');
+
+    if (listBtn.classList.contains('radio-btn--checked')) {
+      listItem.classList.add('hidden');
+    }
+  });
+});
+
+completedBtn.addEventListener('click', function () {
+  const listBtns = document.querySelectorAll('.radio-btn');
+
+  listBtns.forEach((listBtn) => {
+    const listItem = listBtn.parentElement;
+    listItem.classList.remove('hidden');
+
+    if (!listBtn.classList.contains('radio-btn--checked')) {
+      listItem.classList.add('hidden');
+    }
+  });
+});
+
+clearCompletedBtn.addEventListener('click', function () {
+  const listBtns = document.querySelectorAll('.radio-btn');
+
+  listBtns.forEach((listBtn) => {
+    const listItem = listBtn.parentElement;
+
+    if (listBtn.classList.contains('radio-btn--checked')) {
+      listItem.remove();
+    }
+  });
+  updateSum();
 });
 
 (function () {
