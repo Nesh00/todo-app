@@ -131,12 +131,16 @@ small {
 
 small:hover:not(:first-child) {
   color: var(--font-color-hover);
-  cursor: pointer;
 }
 
-.blue {
-  color: rgb(58, 123, 253);
+#all,
+#active,
+#completed,
+#clear-completed--btn {
   cursor: pointer;
+}
+.active {
+  color: rgb(58, 123, 253);
 }
 
 .hidden {
