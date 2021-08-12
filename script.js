@@ -10,6 +10,7 @@ const activeBtn = document.querySelector('#active');
 const completedBtn = document.querySelector('#completed');
 const clearCompletedBtn = document.querySelector('#clear-completed--btn');
 
+// MANAGE THEME IMAGES
 const changeThemeImg = () => {
   if (document.documentElement.className === 'theme-light')
     themeImg.src = 'images/icon-moon.svg';
@@ -17,11 +18,13 @@ const changeThemeImg = () => {
     themeImg.src = 'images/icon-sun.svg';
 };
 
+// STORE THEME IN LOCAL STORAGE
 const setTheme = (themeName) => {
   localStorage.setItem('theme', themeName);
   document.documentElement.className = themeName;
 };
 
+// GET THEME FROM LOCAL STORE
 const toggleTheme = () => {
   localStorage.getItem('theme') === 'theme-dark'
     ? setTheme('theme-light')
@@ -31,10 +34,11 @@ const toggleTheme = () => {
 
 themeBtn.addEventListener('click', toggleTheme);
 
+// CREATE MARKUP
 const renderListItem = function (input) {
   const html = `
     <li class="list-group-item list-item-bg d-flex align-items-center list-item">
-        <div class="radio-btn align-self-center"></div>
+        <div class="check-btn align-self-center"></div>
         <div class="list-text text-capitalize">${input.trim()}</div>
 
         <button class="d-lg-none close-btn align-self-start ms-auto">
@@ -47,6 +51,7 @@ const renderListItem = function (input) {
   listGroup.insertAdjacentHTML('afterbegin', html);
 };
 
+// UPDATE TOTAL LIST-ITEMS
 const updateSum = function () {
   const allItems = document.querySelectorAll('.list-item');
 
@@ -56,6 +61,7 @@ const updateSum = function () {
       : `${allItems.length} items left`;
 };
 
+// MANAGE INPUT FORM
 inputForm.addEventListener('keydown', function (e) {
   const input = e.target;
 
@@ -67,13 +73,15 @@ inputForm.addEventListener('keydown', function (e) {
   }
 });
 
+// CLICK EVENT ON CHECK BUTTON
 listGroup.addEventListener('click', function (e) {
-  const radioBtn = e.target.closest('.radio-btn');
-  if (radioBtn) {
-    radioBtn.classList.toggle('radio-btn--checked');
+  const checkBtn = e.target.closest('.check-btn');
+  if (checkBtn) {
+    checkBtn.classList.toggle('check-btn--active');
   }
 });
 
+// CLICK EVENT ON CLOSE BUTTON
 listGroup.addEventListener('click', function (e) {
   const closeBtn = e.target.closest('button');
   const listItem = e.target.closest('li');
@@ -87,10 +95,10 @@ listGroup.addEventListener('click', function (e) {
 Sortable.create(listGroup, {
   animation: 150,
   draggable: '.list-item',
-  filter: '.radio-btn, .close-btn',
+  filter: '.check-btn, .close-btn',
 });
 
-// LIST-FOOTER BUTTONS DISPLAY-EVENTS
+// SHOW ALL LIST ITEMS
 const renderAllListItems = function () {
   const listItems = document.querySelectorAll('.list-item');
   listItems.forEach((listItem) => listItem.classList.remove('hidden'));
@@ -99,16 +107,18 @@ const renderAllListItems = function () {
   allBtn.classList.add('active');
 };
 
+// CLICK EVENT ON ALL BUTTON
 allBtn.addEventListener('click', renderAllListItems);
 
+// CLICK EVENT ON ACTIVE BUTTON
 activeBtn.addEventListener('click', function () {
-  const listBtns = document.querySelectorAll('.radio-btn');
+  const listBtns = document.querySelectorAll('.check-btn');
 
   listBtns.forEach((listBtn) => {
     const listItem = listBtn.parentElement;
     listItem.classList.remove('hidden');
 
-    if (listBtn.classList.contains('radio-btn--checked')) {
+    if (listBtn.classList.contains('check-btn--active')) {
       listItem.classList.add('hidden');
     }
   });
@@ -117,14 +127,15 @@ activeBtn.addEventListener('click', function () {
   this.classList.add('active');
 });
 
+// CLICK EVENT ON COMPLETED BUTTON
 completedBtn.addEventListener('click', function () {
-  const listBtns = document.querySelectorAll('.radio-btn');
+  const listBtns = document.querySelectorAll('.check-btn');
 
   listBtns.forEach((listBtn) => {
     const listItem = listBtn.parentElement;
     listItem.classList.remove('hidden');
 
-    if (!listBtn.classList.contains('radio-btn--checked')) {
+    if (!listBtn.classList.contains('check-btn--active')) {
       listItem.classList.add('hidden');
     }
   });
@@ -133,19 +144,21 @@ completedBtn.addEventListener('click', function () {
   this.classList.add('active');
 });
 
+// CLICK EVENT ON CLEAR-COMPLETED BUTTON
 clearCompletedBtn.addEventListener('click', function () {
-  const listBtns = document.querySelectorAll('.radio-btn');
+  const listBtns = document.querySelectorAll('.check-btn');
 
   listBtns.forEach((listBtn) => {
     const listItem = listBtn.parentElement;
 
-    if (listBtn.classList.contains('radio-btn--checked')) {
+    if (listBtn.classList.contains('check-btn--active')) {
       listItem.remove();
     }
   });
   updateSum();
 });
 
+// INIT
 (function () {
   document.documentElement.classList.add('theme-dark');
   updateSum();

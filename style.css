@@ -78,7 +78,7 @@ main {
   border-radius: 0 0 4px 4px;
 }
 
-.radio-btn {
+.check-btn {
   border: 1px solid var(--font-color-tertiary);
   border-radius: 50%;
   height: 1.3rem;
@@ -87,11 +87,11 @@ main {
   cursor: pointer;
 }
 
-.radio-btn:hover {
+.check-btn:hover {
   border: 1px solid var(--font-color-hover);
 }
 
-.radio-btn--checked {
+.check-btn--active {
   background: url(images/icon-check.svg),
     linear-gradient(to bottom right, rgb(87, 221, 255), rgb(192, 88, 243));
   background-repeat: no-repeat;
@@ -100,12 +100,12 @@ main {
   width: 1.3rem;
 }
 
-.radio-btn--checked ~ .list-text {
+.check-btn--active ~ .list-text {
   text-decoration: line-through;
   color: var(--font-color-tertiary);
 }
 
-.radio-btn--checked ~ .close-btn {
+.check-btn--active ~ .close-btn {
   display: block !important;
 }
 
@@ -129,16 +129,20 @@ small {
   color: var(--font-color-secondary);
 }
 
-small:hover:not(:first-child) {
-  color: var(--font-color-hover);
-}
-
 #all,
 #active,
 #completed,
 #clear-completed--btn {
   cursor: pointer;
 }
+
+#all:hover,
+#active:hover,
+#completed:hover,
+#clear-completed--btn:hover {
+  color: var(--font-color-hover);
+}
+
 .active {
   color: rgb(58, 123, 253);
 }
