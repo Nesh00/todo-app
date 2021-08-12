@@ -32,6 +32,8 @@
 body {
   background: var(--body-bg-color);
   font-family: 'Josefin Sans', sans-serif;
+  position: fixed;
+  width: 100%;
 }
 
 /* HEADER */
