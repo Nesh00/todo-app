@@ -86,7 +86,8 @@ listGroup.addEventListener('click', function (e) {
 // SORTING LIST-ITEMS WITH DRAG AND DROP
 Sortable.create(listGroup, {
   animation: 150,
-  filter: '#list-footer',
+  draggable: '.list-item',
+  filter: '.radio-btn, .close-btn',
 });
 
 // LIST-FOOTER BUTTONS DISPLAY-EVENTS
