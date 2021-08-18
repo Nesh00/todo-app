@@ -9,6 +9,7 @@ const allBtn = document.querySelector('#all');
 const activeBtn = document.querySelector('#active');
 const completedBtn = document.querySelector('#completed');
 const clearCompletedBtn = document.querySelector('#clear-completed--btn');
+const listItems = [];
 
 // MANAGE THEME IMAGES
 const changeThemeImg = () => {
@@ -24,7 +25,7 @@ const setTheme = (themeName) => {
   document.documentElement.className = themeName;
 };
 
-// GET THEME FROM LOCAL STORE
+// GET THEME FROM LOCAL STORAGE
 const toggleTheme = () => {
   localStorage.getItem('theme') === 'theme-dark'
     ? setTheme('theme-light')
@@ -76,19 +77,20 @@ inputForm.addEventListener('keydown', function (e) {
 // CLICK EVENT ON CHECK BUTTON
 listGroup.addEventListener('click', function (e) {
   const checkBtn = e.target.closest('.check-btn');
-  if (checkBtn) {
-    checkBtn.classList.toggle('check-btn--active');
-  }
+  if (!checkBtn) return;
+
+  checkBtn.classList.toggle('check-btn--active');
 });
 
 // CLICK EVENT ON CLOSE BUTTON
 listGroup.addEventListener('click', function (e) {
   const closeBtn = e.target.closest('button');
   const listItem = e.target.closest('li');
-  if (closeBtn) {
-    listItem.remove();
-    updateSum();
-  }
+
+  if (!closeBtn) return;
+
+  listItem.remove();
+  updateSum();
 });
 
 // SORTING LIST-ITEMS WITH DRAG AND DROP
@@ -158,8 +160,34 @@ clearCompletedBtn.addEventListener('click', function () {
   updateSum();
 });
 
+// STORE LIST-ITEMS IN LOCAL STORAGE
+const saveListItems = function () {
+  const allItems = listGroup.querySelectorAll('.list-text');
+  allItems.forEach((listItem) => listItems.push(listItem.textContent));
+
+  localStorage.setItem('data', JSON.stringify(listItems));
+};
+
+// GET LIST-ITEMS FROM LOCAL STORAGE
+const getListItems = function () {
+  const listItems = JSON.parse(localStorage.getItem('data'));
+
+  if (!listItems) return;
+
+  listItems.forEach((listItem) => renderListItem(listItem));
+};
+
+// EXECUTE STORING LIST-ITEMS WHEN LEAVING PAGE
+window.addEventListener('unload', () => {
+  saveListItems();
+});
+
 // INIT
-(function () {
-  document.documentElement.classList.add('theme-dark');
+(function onLoadDisplay() {
+  localStorage.getItem('theme') === 'theme-dark'
+    ? setTheme('theme-dark')
+    : setTheme('theme-light');
+  changeThemeImg();
+  getListItems(listItems);
   updateSum();
 })();
