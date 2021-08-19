@@ -163,7 +163,7 @@ clearCompletedBtn.addEventListener('click', function () {
 // STORE LIST-ITEMS IN LOCAL STORAGE
 const saveListItems = function () {
   const allItems = listGroup.querySelectorAll('.list-text');
-  allItems.forEach((listItem) => listItems.push(listItem.textContent));
+  allItems.forEach((listItem) => listItems.unshift(listItem.textContent));
 
   localStorage.setItem('data', JSON.stringify(listItems));
 };
