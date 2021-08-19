@@ -32,18 +32,15 @@
 body {
   background: var(--body-bg-color);
   font-family: 'Josefin Sans', sans-serif;
-  position: fixed;
-  width: 100%;
 }
 
 /* HEADER */
 header {
+  height: 20rem;
   background: var(--bg-image-mobile);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
-  height: 40vh;
-  width: 100%;
 }
 
 #header-container {
@@ -169,7 +166,7 @@ footer {
   }
 }
 
-@media all and (max-width: 62em) {
+@media screen and (max-width: 62em) {
   .list-footer-bg {
     padding: 0.7rem 0;
     border: 1px solid var(--font-color-quaternary);
@@ -178,5 +175,11 @@ footer {
 
   footer {
     margin-top: 7rem;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  main {
+    margin-top: -7rem;
   }
 }
